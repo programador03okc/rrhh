@@ -1,0 +1,50 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "npm run development",
+        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch-poll": "npm run watch -- --watch-poll",
+        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "prod": "npm run production",
+        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    },
+    "devDependencies": {
+        "axios": "^0.18",
+        "babel-eslint": "^10.0.1",
+        "babel-preset-react": "^6.23.0",
+        "bootstrap": "^4.3.1",
+        "browser-sync": "^2.26.5",
+        "browser-sync-webpack-plugin": "^2.0.1",
+        "cross-env": "^5.2.0",
+        "eslint": "^5.16.0",
+        "eslint-config-airbnb": "^17.1.0",
+        "eslint-config-prettier": "^4.3.0",
+        "eslint-plugin-import": "^2.17.3",
+        "eslint-plugin-jsx-a11y": "^6.2.1",
+        "eslint-plugin-prettier": "^3.1.0",
+        "eslint-plugin-react": "^7.13.0",
+        "jquery": "^3.4.1",
+        "laravel-mix": "^2.1.14",
+        "lodash": "^4.17.11",
+        "popper.js": "^1.14.4",
+        "prettier": "^1.17.1",
+        "react": "^16.5.2",
+        "react-dom": "^16.5.2"
+    },
+    "dependencies": {
+        "ajv": "^6.5.4",
+        "imagemin": "^5.3.1",
+        "img-loader": "^3.0.0",
+        "match-sorter": "^2.3.0",
+        "material-design-icons": "^3.0.1",
+        "pdfmake": "^0.1.56",
+        "react-bootstrap-table": "^4.3.1",
+        "react-html-table-to-excel": "^2.0.0",
+        "react-modal": "^3.6.1",
+        "react-router-dom": "^4.3.1",
+        "react-table": "^6.8.6",
+        "react-tabs": "^2.3.0",
+        "xlsx": "^0.14.0"
+    }
+}
