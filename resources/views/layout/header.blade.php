@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ asset('fonts/Awesome/css/all.min.css')}}">
     <link rel="stylesheet" href="{{ asset('template/dist/css/AdminLTE.css')}}">
     <link rel="stylesheet" href="{{ asset('template/dist/css/skins/_all-skins.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('css/app.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/basic.css')}}">
 </head>
 <body class="hold-transition skin-okc sidebar-mini">
     <div class="wrapper">

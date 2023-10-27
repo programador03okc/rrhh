@@ -82,6 +82,7 @@ class LoginController extends Controller{
     public function mostrar_roles($user){
         $prev = DB::table('configuracion.sis_usua')->where('usuario', '=', $user)->get();
         $sql = '';
+        $roles = '';
         
         if ($prev->count() > 0){
             $trab = $prev->first()->id_trabajador;

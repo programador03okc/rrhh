@@ -1,6 +1,7 @@
 $(function(){
     $("#formLogin").submit(function(e) {
         const formData = $(this).serialize();
+        console.log(formData);
         const action = $(this).attr('action');
         const rols = $('[name=role]').val();
         if (rols > 0) {

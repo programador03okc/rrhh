@@ -10,7 +10,8 @@
 	<link rel="stylesheet" href="{{ asset('template/fonts/ionicons.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('template/dist/css/AdminLTE.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('template/plugins/iCheck/square/blue.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/app.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/basic.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/login.css')}}">
 </head>
 <body>
     <div class="hold-transition login-page">
@@ -29,7 +30,7 @@
                     <div class="form-group has-feedback">
                         <input type="hidden" name="role">
                         <input type="text" name="usuario" class="form-control" placeholder="Nombre de usuario"
-                            onblur="cargarRol(this.value);" onfocus="cargarRol(this.value);">
+                            onblur="cargarRol(this.value);">
                         <span class="glyphicon glyphicon-user form-control-feedback"></span>
                     </div>
                     <div class="form-group has-feedback">
@@ -48,10 +49,11 @@
     <script src="{{ asset('js/jquery.min.js')}}"></script>
     <script src="{{ asset('template/bootstrap/js/bootstrap.min.js')}}"></script>
     <script src="{{ asset('template/plugins/iCheck/icheck.min.js')}}"></script>
-    <script src="{{ asset('addons/sweetalert/sweetalert2@8.js') }}"></script>
-    <script src="{{ asset('js/app.js')}}"></script>
+    <script src="{{ asset('addons/sweetalert/sweetalert.js') }}"></script>
+    <script src="{{ asset('js/login.js')}}"></script>
     <script>
         function cargarRol(value){
+            console.log(value)
             baseUrl = 'cargar_usuarios/'+value;
             $.ajax({
                 type: 'GET',

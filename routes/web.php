@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
 
 //  Route::get('/{path?}', function () {
 //      return view('index');
@@ -40,7 +45,7 @@ Route::get('admin', function (){
 });
 
 Route::get('modulos', 'LoginController@index')->name('modulos');
-Route::get('cargar_usuarios/{user}', 'LoginController@mostrar_roles');
+Route::get('cargar_usuarios/{user}', [LoginController::class, 'mostrar_roles']);
 
 Route::get('artisan', function () {
     //return app_path();

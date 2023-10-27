@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ asset('template/plugins/iCheck/all.css') }}">
     <link rel="stylesheet" href="{{ asset('template/plugins/select2/select2.css') }}">
     <link rel="stylesheet" href="{{ asset('template/plugins/gantt/dhtmlxgantt.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/basic.css') }}">
     @yield('styles_modulo')
     @yield('styles_seccion')
 </head>
