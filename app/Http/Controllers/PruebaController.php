@@ -4043,7 +4043,7 @@ class PruebaController extends Controller{
                     <td width="15%"></td>
                 </tr>
                 <tr>
-                    <th colspan="4" class="header-tr">NETO A PGAR</th>
+                    <th colspan="4" class="header-tr">NETO A PAGAR</th>
                     <th>'.number_format($total_pago ,2).'</th>
                 </tr>';
 

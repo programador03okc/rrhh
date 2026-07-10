@@ -44,6 +44,8 @@ Route::get('admin', function (){
     return view('administracion/main');
 });
 
+Auth::routes();
+
 Route::get('modulos', 'LoginController@index')->name('modulos');
 Route::get('cargar_usuarios/{user}', [LoginController::class, 'mostrar_roles']);
 
@@ -55,8 +57,6 @@ Route::get('artisan', function () {
     Artisan::call('config:cache');
 });
 
-
-Auth::routes();
 
 Route::group(['middleware' => ['auth']], function () {
 	Route::get('config', function () {
