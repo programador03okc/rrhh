@@ -4260,6 +4260,10 @@ class RecursosHumanosController extends Controller{
                         DB::raw("CONCAT(rrhh_perso.apellido_paterno,' ',rrhh_perso.apellido_materno,' ',rrhh_perso.nombres) AS datos_trabajador"))
                 ->where('rrhh_trab.id_trabajador', '=', $ids_trab)->first();
 
+            if ($sqlDatos === null) {
+                continue;
+            }
+
             // ROL DEL TRABAJADOR
             $sqlRol = DB::table('rrhh.rrhh_trab')
                 ->join('rrhh.rrhh_rol', 'rrhh_rol.id_trabajador', '=', 'rrhh_trab.id_trabajador')
@@ -4329,6 +4333,12 @@ class RecursosHumanosController extends Controller{
                 $tp_cc = $ctts->tipo_centro_costo;
                 $horas = $ctts->hora_sem;
                 $tp_horario = $ctts->id_horario;
+            } else {
+                $modalid = '';
+                $tpcontra = '';
+                $tp_cc = 1;
+                $horas = 0;
+                $tp_horario = 0;
             }
 
             $dts_trab = $sqlDatos->datos_trabajador;
@@ -4382,7 +4392,9 @@ class RecursosHumanosController extends Controller{
             // ASIGNACION FAMILIAR
             if ($plani == 1){
                 if ($cnt_hijo == 1){
-                    $sqlAsig = DB::table('rrhh.rrhh_asig_familiar')->where('fecha_inicio', '<=', $dmY_primer)->where('fecha_fin', '>=', $dmY_primer)->first();
+                    $sqlAsig = DB::table('rrhh.rrhh_asig_familiar')
+                        // ->where('fecha_inicio', '<=', $dmY_primer)->where('fecha_fin', '>=', $dmY_primer)
+                        ->where('estado', 1)->first();
                     $asg_fami = (float) $sqlAsig->valor;
                 }else{
                     $asg_fami = 0;
@@ -4525,13 +4537,13 @@ class RecursosHumanosController extends Controller{
             }
 
             //APORTES DEL EMPLEADOR
-            $sqlBasico = DB::table('rrhh.rrhh_aport')->where('id_variable_aportacion', 8)->where('fecha_inicio', '<=', $dmY_primer)->where('fecha_fin', '>', $dmY_primer)->first();
+            $sqlBasico = DB::table('rrhh.rrhh_aport')->where('id_variable_aportacion', 7)->where('estado', 1)->first();
             $sbasico = $sqlBasico->valor;
 
             $dts_apor = [];
             $tot_aport = 0;
             if ($plani == 1){
-                $sqlAporta = DB::table('rrhh.rrhh_aport')->where('estado', '=', 1)->where('id_variable_aportacion', '!=', 8)->get();
+                $sqlAporta = DB::table('rrhh.rrhh_aport')->where('estado', '=', 1)->where('id_variable_aportacion', '!=', 7)->get();
 
                 foreach ($sqlAporta as $keyAporta){
                     $apt_valor = $keyAporta->valor;
@@ -4766,6 +4778,10 @@ class RecursosHumanosController extends Controller{
                         DB::raw("CONCAT(rrhh_perso.apellido_paterno,' ',rrhh_perso.apellido_materno,' ',rrhh_perso.nombres) AS datos_trabajador"))
                 ->where('rrhh_trab.id_trabajador', '=', $ids_trab)->first();
 
+            if ($sqlDatos === null) {
+                continue;
+            }
+
             // ROL DEL TRABAJADOR
             $sqlRol = DB::table('rrhh.rrhh_trab')
                 ->join('rrhh.rrhh_rol', 'rrhh_rol.id_trabajador', '=', 'rrhh_trab.id_trabajador')
@@ -4865,6 +4881,11 @@ class RecursosHumanosController extends Controller{
                 $ini_contrato = '';
                 $fin_contrato = '';
                 $contarPerso = 'no';
+                $modalid = '';
+                $tpcontra = '';
+                $tp_cc = 1;
+                $horas = 0;
+                $tp_horario = 0;
             }
 
             $dts_trab = $sqlDatos->datos_trabajador;
@@ -4918,7 +4939,10 @@ class RecursosHumanosController extends Controller{
             // ASIGNACION FAMILIAR // HORAS EXTRAS
             if ($plani == 1){
                 if ($cnt_hijo == 1){
-                    $sqlAsig = DB::table('rrhh.rrhh_asig_familiar')->where('fecha_inicio', '<=', $dmY_primer)->where('fecha_fin', '>=', $dmY_primer)->first();
+                    $sqlAsig = DB::table('rrhh.rrhh_asig_familiar')
+                    // ->where('fecha_inicio', '<=', $dmY_primer)->where('fecha_fin', '>=', $dmY_primer)
+                    ->where('estado', 1)
+                    ->first();
                     $asg_fami = (float) $sqlAsig->valor;
                     // if ($emp == 5 && $ids_trab == 4) {
                     //     $asg_fami = 0;
@@ -5442,14 +5466,14 @@ class RecursosHumanosController extends Controller{
             //APORTES DEL EMPLEADOR
             $dts_apor = [];
             $tot_aport = 0;
-            $sqlBasico = DB::table('rrhh.rrhh_aport')->where('id_variable_aportacion', 8)->where('fecha_inicio', '<=', $dmY_primer)->where('fecha_fin', '>', $dmY_primer)->first();
+            $sqlBasico = DB::table('rrhh.rrhh_aport')->where('id_variable_aportacion', 7)->where('estado', 1)->first();
             $sbasico = $sqlBasico->valor;
 
             $dts_apor = [];
             $tot_aport = 0;
 
             if ($plani == 1){
-                $sqlAporta = DB::table('rrhh.rrhh_aport')->where('estado', '=', 1)->where('id_variable_aportacion', '!=', 8)->get();
+                $sqlAporta = DB::table('rrhh.rrhh_aport')->where('estado', '=', 1)->where('id_variable_aportacion', '!=', 7)->get();
 
                 foreach ($sqlAporta as $keyAporta){
                     $apt_valor = $keyAporta->valor;
@@ -5602,7 +5626,6 @@ class RecursosHumanosController extends Controller{
                 'benef_grati'           => $bfc_grati,
                 'benef_vacaciones'      => $bfc_vacac,
                 'benef_bonif'           => $bfc_bonif,
-                'benef_descuent'        => $bfc_desct,
                 'benef_descuent'        => $bfc_desct,
                 'benef_aporte_pension'  => $dts_pensi_benef
             );
@@ -6105,7 +6128,7 @@ class RecursosHumanosController extends Controller{
                 $html .= '<td width="15%"></td>
                     </tr>
                     <tr>
-                        <th colspan="4" class="header-tr">NETO A PGAR</th>
+                        <th colspan="4" class="header-tr">NETO A PAGAR</th>
                         <th align="right">'.number_format($total_pago, 2).'</th>
                     </tr>';
 
@@ -6548,7 +6571,7 @@ class RecursosHumanosController extends Controller{
                 // $html .= '<td width="15%"></td>
                 //     </tr>';
                 $html .= '<tr>
-                        <th colspan="4" class="header-tr">NETO A PGAR</th>
+                        <th colspan="4" class="header-tr">NETO A PAGAR</th>
                         <th align="right">'.number_format($total_pago, 2).'</th>
                     </tr>';
 
@@ -6941,7 +6964,7 @@ class RecursosHumanosController extends Controller{
             $html .= '<td width="15%"></td>
                 </tr>
                 <tr>
-                    <th colspan="4" class="header-tr">NETO A PGAR</th>
+                    <th colspan="4" class="header-tr">NETO A PAGAR</th>
                     <th align="right">'.number_format($total_pago, 2).'</th>
                 </tr>';
 
